@@ -7,6 +7,9 @@ import PostList from "./components/PostList";
 import PostDetails from "./components/PostDetails";
 import { postsContext } from "./contexts/postContext";
 import NotFound from "./components/NotFound";
+import NewPost from "./components/NewPost";
+import DeletePost from "./components/DeletePost";
+import PostLayout from "./components/PostLayout";
 
 function App() {
   let postsData = [
@@ -45,17 +48,23 @@ function App() {
           <Link to={"/hello"}>
             <button style={{ fontSize: "30px" }}>Hello</button>
           </Link>
-          <Link to={"/post"}>
+          <Link to={"/posts"}>
             <button style={{ fontSize: "30px" }}>Post</button>
           </Link>
         </div>
 
         <Routes>
           <Route path="/hello" element={<Hello />} />
-          <Route path="/post" element={<PostList />} />
+          {/* nested routes  Start*/}
+          <Route path="posts" element={<PostLayout />}>
+            <Route index element={<PostList />} />
+            <Route path=":postId" element={<PostDetails />} />
+            <Route path="new" element={<NewPost />} />
+            <Route path="delete" element={<DeletePost />} />
+          </Route>
+          {/* nested routes  End*/}
           <Route path="/home" element={<Home />} />
           <Route path="/" element={<Home />} />
-          <Route path="/postDetails/:postId" element={<PostDetails />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
