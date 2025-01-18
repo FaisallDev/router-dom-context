@@ -11,11 +11,15 @@ export default function PostDetails() {
     return p.id === Number(postId); // نتأكد ان التحقق يكون بالارقام لأن useParams يعطينا القيمة بصورة نصية
   });
   console.log(post);
-  return (
-    <div>
-      <h1>Post Details Page</h1>
-      <h1>{post.title}</h1>
-      <p>{post.body}</p>
-    </div>
-  );
+  if (post) {
+    return (
+      <div>
+        <h1>Post Details Page</h1>
+        <h1>{post.title}</h1>
+        <p>{post.body}</p>
+      </div>
+    );
+  } else {
+    return <h1>Post Number {postId} does not exist</h1>;
+  }
 }

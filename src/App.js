@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import PostList from "./components/PostList";
 import PostDetails from "./components/PostDetails";
 import { postsContext } from "./contexts/postContext";
+import NotFound from "./components/NotFound";
 
 function App() {
   let postsData = [
@@ -55,6 +56,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/" element={<Home />} />
           <Route path="/postDetails/:postId" element={<PostDetails />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </postsContext.Provider>
